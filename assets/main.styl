@@ -1,0 +1,47 @@
+*
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+
+@import '_vars';
+@import '_font_Golos';
+@import '_common';
+@import '_@Utilities';
+
+
+// :root
+//   min-width: 1440px;
+
+body
+  font-family: 'Golos Text', sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed
+  color $clr_titanic
+
+/**
+Typography
+*/
+h1,h2,h3
+  line-height 1
+  margin-bottom .7em
+h1
+  font-size: 56px;
+h2 
+  font-size: 40px;
+h3 
+  font-size 24px
+
+
+
+
+.page-enter-active,
+.page-leave-active
+    transition-property opacity
+    transition-timing-function ease-in-out
+    transition-duration 500ms
+
+.page-enter,
+.page-leave-to
+    opacity 0
