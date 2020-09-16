@@ -3,26 +3,34 @@
 
   .Voting
     .bold Организация зимних видов досуга на склонах и нижней террасе Лагерного Сада
-    div Осталось 8 дней
-    .flex_wr
+    small Осталось 8 дней
+    .flex_wr.y_start
       .Tag(
         v-for="el in ['Общее', 'Дороги', 'Ремонтные работы']"
       ) {{el}}
 
-  .Voting.mx-3
+  .Voting.shawshank.mx-4
     .bold Установки по зарядке сотовых телефонов
-    div Осталось 8 дней
+    small Проголосовал
     .flex_wr.y_start
       .Tag(
         v-for="el in ['Общее', 'Благоустройство']"
       ) {{el}}
 
-  .Voting.mx-3
+  .Voting.mr-4
     .bold Выбор общественных мероприятий на праздновании Дня Города
-    div Осталось 8 дней
-    .flex_wr
+    small Узнать результаты
+    .flex_wr.y_start
       .Tag(
         v-for="el in ['Ремонтные работы', 'Благоустройство']"
+      ) {{el}}
+
+  .Voting
+    .bold Установки для дезинфекции помещений
+    small Осталось 12 дней
+    .flex_wr.y_start
+      .Tag(
+        v-for="el in ['Общее']"
       ) {{el}}
 
 
@@ -39,8 +47,11 @@ export default {}
   padding 1em
   background $clr_rush
   display: grid;
-  grid-template-rows: 4em 2em 1fr
-  line-height 1
+  grid-template-rows: 5rem 2.4rem 1fr
+  // line-height 1
+
+  &.shawshank
+    background $clr_shawshank
 
 .Tag
   margin .2em

@@ -17,7 +17,7 @@ body
   font-family: 'Golos Text', sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeSpeed
+  // text-rendering: optimizeSpeed
   color $clr_titanic
 
 /**
@@ -33,14 +33,15 @@ h2
 h3 
   font-size 24px
 
-
+a
+  color inherit
 
 
 .page-enter-active,
 .page-leave-active
     transition-property opacity
     transition-timing-function ease-in-out
-    transition-duration 500ms
+    transition-duration .3s
 
 .page-enter,
 .page-leave-to

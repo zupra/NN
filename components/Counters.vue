@@ -1,42 +1,24 @@
 <template lang="pug" functional>
 .Counters
-  div
-    .Counters_num {{props.num_1}}
-    .Counters_label {{props.str_11}} 
-      br
-      | {{props.str_12}}
-  div
-    .Counters_num {{props.num_2}}
-    .Counters_label {{props.str_21}} 
-      br
-      | {{props.str_22}}
+  .Counters_num {{props.num}}
+  .Counters_label {{props.str_1}} 
+    br
+    | {{props.str_2}}
+
 </template>
 
 <script>
 export default {
   props: {
-    num_1: {
+    num: {
       type: String,
       default: '10',
     },
-    str_11: {
+    str_1: {
       type: String,
       default: 'str_1',
     },
-    str_12: {
-      type: String,
-      default: 'str_2',
-    },
-    //
-    num_2: {
-      type: String,
-      default: '10',
-    },
-    str_21: {
-      type: String,
-      default: 'str_1',
-    },
-    str_22: {
+    str_2: {
       type: String,
       default: 'str_2',
     },
@@ -46,8 +28,7 @@ export default {
 
 <style lang="stylus">
 .Counters
-  display grid
-  grid-template-columns: 120px 120px;
+  margin-left 2.4rem
   &_num
     font-size 40px
     font-weight bold

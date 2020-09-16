@@ -4,31 +4,38 @@ client-only
   swiper(
     :options="swiperOption"
   )
-    swiper-slide.newsItem(
+    swiper-slide.It(
       v-for="It in newsList"
       :key="It.id"
     )
-      img.newsItemImg(
+      //-
+        img(
+          src="https://via.placeholder.com/360x212"
+        )
+
+      //- :src="`https://picsum.photos/id/${idx+10}/280/160`"
+      //- :src="require(`~/static/images/сities/${It.id}.jpg`)"
+
+      img.Img(
         :src="It.img"
       )
-      .newsItemText
-        .newsItemText__text {{It.title}}
-        .newsItemText__date {{It.date}}
+      .text
+        .bold {{It.title}}
+        .date {{It.date}}
 
-
-
-    .swiper-button-prev(
-      slot="button-prev"
-    )
-      | &emsp; &emsp;
-      img(
-        src="https://icongr.am/jam/arrow-square-left.svg?size=48&color=ffffff"
+    //-
+      .swiper-button-prev(
+        slot="button-prev"
       )
+        | &emsp; &emsp;
+        img(
+          src="https://icongr.am/jam/arrow-square-left.svg?size=48&color=ffffff"
+        )
     .swiper-button-next(
       slot="button-next"
     )
       img(
-        src="https://icongr.am/jam/arrow-square-right.svg?size=48&color=ffffff"
+        src="https://icongr.am/fontawesome/angle-right.svg?size=128&color=ff0000"
       )
       | &emsp; &emsp;
 
@@ -164,40 +171,12 @@ export default {
 //     filter: drop-shadow(0 0 16px blue);
 
 
-
-/*
-.swiper
-  &-container
-    padding-bottom: 5em;
-
-  &-button-next, &-button-prev
-    outline 0
-    top 90% //1em;
-    // bottom 0
-    //height 4em //180px
-    width 50px // 100px
-    cursor none
-    &:hover
-      &:after
-        box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px rgba(0,0,0,.14), 0 1px 14px rgba(0,0,0,.12);
-    &:after
-      cursor pointer
-      content: '';
-      circle(50px);
-      background #FFF
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18), 0px 1px 2px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04);
-
-  &-button-prev
-    // left 2em
-    background: linear-gradient(90deg, rgba(#FFF, 0.5) 0%, rgba(#FFF, 0.0001) 99%);
-    &:after
-      background: red // #FFF url('~static/icon/L.png') no-repeat center;
-  &-button-next
-    // right: 2em
-    background: linear-gradient(90deg, rgba(#FFF, 0.0001) 0%, rgba(#FFF, 0.5) 99%);
-    &:after
-      background: red // #FFF url('~static/icon/R.png') no-repeat center;
-
-
-*/
+.Img
+  border-radius 16px
+.text
+  margin-top 1em
+  display: grid;
+  // grid-gap: 10px;
+  // grid-template-columns: 1fr 1fr;
+  grid-template-rows: 4.2em 1fr;
 </style>

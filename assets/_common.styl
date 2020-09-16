@@ -1,46 +1,88 @@
-
-
-.BR
-  height 6rem
-
 .wrap
   max-width: 1232px;
   margin: 0 auto;
   padding: 0 1em;
 
-
-.Intro
-  margin 4rem 0 5rem
+@import '__nav&links';
 
 
-.Feature_button
-  cursor pointer
-  box-sizing border-box
-  background $clr_interstellar
-  color #FFF
-  font-weight bold
-  border-radius: 1em
-  padding 50px 1.4em 1em
-  
-  width 276px
-  // height 138px
-  position relative
 
-  transition: filter .4s
-  filter: drop-shadow(2px 4px 10px #222);
-  &:hover
-    // filter: none
-    filter: drop-shadow(0 0 16px blue);
-  &:before
-    content: ''
+.TAB
+  user-select none
+  margin-right 1.6rem
+  &.active
+    &:before
+      width: 100%;
+  sup
+    margin-left .3em
+    color $clr_rocky
+
+
+
+.gridCards
+  margin-bottom 6rem
+  display: grid;
+  grid-gap: 3rem;
+  grid-template-columns: repeat(3, 380px);
+
+
+.newsItem
+  &Img
+    border-radius 16px
+  &Text
+    margin-top 1em
+    display: grid;
+    grid-template-rows: 4.6em 1fr;
+    &__text
+      font-weight bold
+      height 4em
+      overflow: hidden
+    &__date
+      opacity: 0.48;
+
+
+
+
+
+
+
+/*
+.cardFigure
+  &_img
+    border-radius 16px
+  &_text
+    margin-top 1em
+    display: grid;
+    grid-template-rows: 4.2em 1fr;
+  &_date
+    opacity: 0.48;
+*/
+
+.cardFigure
+
+  figure
+    width 380px
+    border-radius 16px
+    position relative
+    img
+      display block
+      border-radius: 16px;
+
+  figcaption
+    border-radius: 0 0 16px 16px;
     position absolute
-    top -32px
-    width 120px
-    height 64px
-  &:nth-of-type(1):before
-    background: url('~static/img/Lamp.png') no-repeat center;
-  &:nth-of-type(2):before
-    background: url('~static/img/Vote.png') no-repeat center;
-  &:nth-of-type(3):before
-    background: url('~static/img/Map.png') no-repeat center;
+    bottom 0
+    left 0
+    width 100%
+    padding 3em 1.4rem 1.4rem
+    color #FFF
+
+    background: linear-gradient(360deg, rgba(0, 21, 72, 0.72) 0%, rgba(0, 25, 72, 0) 100%);
+    display: grid;
+    grid-template-rows: 4.2em 1fr;
+
+.cardFigure:hover
+
+  figcaption
+    background: linear-gradient(360deg, rgba(0, 21, 72, 0.9) 0%, rgba(0, 25, 72, .3) 100%);
 

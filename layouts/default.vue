@@ -1,24 +1,13 @@
 <template lang="pug">
 div
+  .wrap
   
-  .wrap.my-3.flex.x_sb.y_center
-    img(src="~/static/img/Logo.png")
-
-    .flex.y_center
-      .scrollTo(
-        v-scroll-to="'#'"
-      ) Новости
-      .scrollTo.mx-4(
-        v-scroll-to="'#'"
-      ) Интерактивная карта
-      .scrollTo.mr-4(
-        v-scroll-to="'#'"
-      ) Инициативы
-      .scrollTo(
-        v-scroll-to="'#'"
-      ) Голосования
-
-    div Профиль
+    TopNav
+    //- pre {{$route}}
+    .breadcrumbs
+      N-link.breadcrumbs_item(
+        to="/"
+      ) Главная /
 
   <Nuxt />
 
@@ -27,23 +16,56 @@ div
 </template>
 
 <script>
-// Новости
-// Интерактивная карта
-// Инициативы
-// Голосования
-
-const NAV = {
-  news: 'Новости',
-  interactive_map: 'Интерактивная карта',
-  initiatives: 'Инициативы',
-  voting: 'Голосования',
-}
-
 export default {
   data() {
     return {}
   },
+  computed: {
+    /*
+    crumbs() {
+      const crumbs = []
+      this.$route.matched.map((item, i, { length }) => {
+        const crumb = {}
+        crumb.path = item.path
+        crumb.name = this.$i18n.t('route.' + (item.name || item.path))
+
+        // is last item?
+        if (i === length - 1) {
+          // is param route? .../.../:id
+          if (item.regex.keys.length > 0) {
+            crumbs.push({
+              path: item.path.replace(/\/:[^/:]*$/, ''),
+              name: this.$i18n.t('route.' + item.name.replace(/-[^-]*$/, '')),
+            })
+            crumb.path = this.$route.path
+            crumb.name = this.$i18n.t('route.' + this.$route.name, [
+              crumb.path.match(/[^/]*$/)[0],
+            ])
+          }
+          crumb.classes = 'is-active'
+        }
+
+        crumbs.push(crumb)
+      })
+
+      return crumbs
+    },
+    */
+  },
 }
 </script>
 
-<style></style>
+<style lang="stylus">
+
+.Page
+  min-height 50vh
+
+
+.breadcrumbs
+  font-size: 13px;
+  margin 3rem 0 .5rem
+  &_item
+    color $clr_titanic //#E5E5E5
+    opacity: 0.32;
+    text-decoration none
+</style>
