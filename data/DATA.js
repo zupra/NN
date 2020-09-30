@@ -10,14 +10,14 @@ function randomInt(min, max) {
 const tags = ['Готовится ответ', 'Решено']
 
 const Appeals = Array.from({ length: 12 }, (_, idx) => ({
-  id: `${idx + 1}`,
+  id: idx + 1,
   tag: tags[randomInt(0, 1)],
   text: faker.lorem.words(),
   address: faker.address.streetAddress(),
 }))
 
 const News = Array.from({ length: 12 }, (_, idx) => ({
-  id: `${idx + 1}`,
+  id: idx + 1,
   text: faker.lorem.paragraph(),
   date: new Date(faker.date.past()).toLocaleString('ru-RU', {
     day: '2-digit',
@@ -27,7 +27,7 @@ const News = Array.from({ length: 12 }, (_, idx) => ({
 }))
 
 const Initiatives = Array.from({ length: 12 }, (_, idx) => ({
-  id: `${idx + 1}`,
+  id: idx + 1,
   text: faker.lorem.sentence(),
   date: new Date(faker.date.past()).toLocaleString('ru-RU', {
     day: '2-digit',
@@ -36,4 +36,4 @@ const Initiatives = Array.from({ length: 12 }, (_, idx) => ({
   }),
 }))
 
-export { Appeals, News, Initiatives }
+export { randomInt, Appeals, News, Initiatives }

@@ -4,18 +4,22 @@ client-only
   swiper(
     :options="swiperOption"
   )
-    swiper-slide.cardFigure(
-      v-for="(It,idx) in Appeals"
-      :key="It.id"
+    swiper-slide(
+        v-for="It in Appeals"
+        :key="It.id"
     )
-
-      figure
-        img(
-          :src="`https://picsum.photos/id/${idx+120}/380/380`"
-        )
-        figcaption
+      .cardFigure
+        picture
+          img(
+            :src="`https://picsum.photos/id/${It.id+120}/380/380`"
+          )
+        .cardFigure__text
           .bold {{It.text}}
-          div {{It.address}}
+          .date {{It.address}}
+
+
+
+
 
 
     .swiper-button-prev(

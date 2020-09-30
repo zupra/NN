@@ -37,6 +37,7 @@ export default {
   plugins: [
     { src: '@/plugins/vue-awesome-swiper.js', mode: 'client' },
     // '@/plugins/vue-scrollto.js',
+    '@/plugins/faker.js',
   ],
   /*
    ** Auto import components

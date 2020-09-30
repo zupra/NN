@@ -22,28 +22,35 @@
       v-for="el in tagList"
     ) {{el}}
 
-  //- .BR
-  //- pre {{Appeals}}
   .gridCards
 
     .cardFigure(
-      v-for="(It,idx) in Appeals"
+      v-for="It in Appeals"
       :key="It.id"
     )
-      figure
+      picture
         img(
-          :src="`https://picsum.photos/id/${idx+120}/380/380`"
+          :src="`https://picsum.photos/id/${It.id+120}/380/380`"
         )
-        figcaption
-          .bold {{It.text}}
-          div {{It.address}}
+      .cardFigure__text
+        .bold {{It.text}}
+        div {{It.address}}
 
-  .btn.my-5 Показать еще обращения
 
+  .btn.my-5(
+    @click="loadMore()"
+  ) Показать еще обращения
+
+
+  //- pre {{Appeals}}
+  //- pre {{$faker.lorem.sentence()}}
+  //- pre {{lastId}}
 </template>
 
 <script>
-import { Appeals } from '~/data/DATA.js'
+import { randomInt } from '~/data/DATA.js'
+
+const tags = ['Готовится ответ', 'Решено']
 
 const tagList = [
   'Все обращения',
@@ -56,8 +63,30 @@ export default {
   data() {
     return {
       tagList,
-      Appeals,
+      Appeals: Array.from({ length: 6 }, (_, idx) => ({
+        id: idx + 1,
+        tag: tags[randomInt(0, 1)],
+        text: this.$faker.lorem.words(),
+        address: this.$faker.address.streetAddress(),
+      })),
     }
+  },
+  computed: {
+    lastId() {
+      return this.Appeals[this.Appeals.length - 1].id + 1
+    },
+  },
+  methods: {
+    loadMore() {
+      this.Appeals.push(
+        ...Array.from({ length: 3 }, (_, idx) => ({
+          id: idx + this.lastId,
+          tag: tags[randomInt(0, 1)],
+          text: this.$faker.lorem.words(),
+          address: this.$faker.address.streetAddress(),
+        }))
+      )
+    },
   },
 }
 </script>
