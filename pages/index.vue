@@ -159,6 +159,7 @@ export default {
 
 .swiper-button-prev, .swiper-button-next
   outline 0
+  filter: drop-shadow(2px 3px 4px #000);
 .swiper-container
   .swiper-button-prev,
   .swiper-button-next

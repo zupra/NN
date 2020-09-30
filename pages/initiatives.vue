@@ -38,6 +38,8 @@
           .date {{It.date}}
 
 
+  .btn.my-5 Показать еще инициативы
+
 </template>
 
 <script>

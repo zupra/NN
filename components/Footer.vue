@@ -19,7 +19,7 @@
         ) gosuslugi.ru
         |  и получайте государтсвенные услуги без очередей и сложностей
 
-      .flex.mt-5
+      .flex.mt-5.mb-3
         div
           p.mb-3 Инициатор
           a(
@@ -33,6 +33,9 @@
           )
             img(src="~/static/images/logo_RIR_W.png")
 
+      a(
+        href="#"
+      ) Сообщить о проблеме на сайте
 
 
     // Right Col

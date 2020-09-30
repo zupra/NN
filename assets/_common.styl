@@ -3,7 +3,6 @@
   margin: 0 auto;
   padding: 0 1em;
 
-@import '__nav&links';
 
 
 
@@ -20,10 +19,11 @@
 
 
 .gridCards
-  margin-bottom 6rem
+  margin-bottom 4rem
   display: grid;
   grid-gap: 3rem;
   grid-template-columns: repeat(3, 380px);
+
 
 
 .newsItem
@@ -43,20 +43,6 @@
 
 
 
-
-
-
-/*
-.cardFigure
-  &_img
-    border-radius 16px
-  &_text
-    margin-top 1em
-    display: grid;
-    grid-template-rows: 4.2em 1fr;
-  &_date
-    opacity: 0.48;
-*/
 
 .cardFigure
 
@@ -80,6 +66,8 @@
     background: linear-gradient(360deg, rgba(0, 21, 72, 0.72) 0%, rgba(0, 25, 72, 0) 100%);
     display: grid;
     grid-template-rows: 4.2em 1fr;
+    align-items: end;
+    grid-gap: 1rem
 
 .cardFigure:hover
 

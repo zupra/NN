@@ -37,6 +37,9 @@
         figcaption
           .bold {{It.text}}
           div {{It.address}}
+
+  .btn.my-5 Показать еще обращения
+
 </template>
 
 <script>

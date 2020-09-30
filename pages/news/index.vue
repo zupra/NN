@@ -20,7 +20,7 @@
         .newsItemText__text {{It.text}}
         .newsItemText__date {{It.date}}
 
-
+  .btn.my-5 Показать еще новости
 
 </template>
 
