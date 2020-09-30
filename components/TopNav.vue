@@ -10,7 +10,7 @@
     N-link.scrollTo.mr-4(
       v-for="(val, key, idx) in NAV"
       :key="idx"
-      :to="key"
+      :to="`/${key}`"
     ) {{val}}
 
   .flex.y_center

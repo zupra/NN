@@ -8,10 +8,13 @@
       v-for="el in tagList"
     ) {{el}}
 
-  .gridCards
-    .newsItem(
+  transition-group.gridCards(
+    name="list"
+  )
+    N-link.newsItem(
       v-for="It in News"
       :key="It.id"
+      to="/news/news_item"
     )
       img.newsItemImg(
         :src="`https://picsum.photos/id/${It.id+10}/380/240`"

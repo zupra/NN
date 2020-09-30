@@ -55,17 +55,4 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-
-.Page
-  min-height 50vh
-
-
-.breadcrumbs
-  font-size: 13px;
-  margin 3rem 0 .5rem
-  &_item
-    color $clr_titanic //#E5E5E5
-    opacity: 0.32;
-    text-decoration none
-</style>
+<style lang="stylus"></style>

@@ -22,11 +22,14 @@
       v-for="el in tagList"
     ) {{el}}
 
-  .gridCards
 
-    .cardFigure(
+  transition-group.gridCards(
+    name="list"
+  )
+    N-link.cardFigure(
       v-for="It in Appeals"
       :key="It.id"
+      to="/appeals/appeals_item"
     )
       picture
         img(
