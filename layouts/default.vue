@@ -4,10 +4,10 @@ div
   
     TopNav
     //- pre {{$route}}
-    .breadcrumbs
-      N-link.breadcrumbs_item(
-        to="/"
-      ) Главная /
+    //- .breadcrumbs
+    //-   N-link.breadcrumbs_item(
+    //-     to="/"
+    //-   ) Главная /
 
   <Nuxt />
 

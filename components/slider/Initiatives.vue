@@ -5,20 +5,20 @@ client-only
     :options="swiperOption"
   )
     swiper-slide(
-        v-for="It in Appeals"
+        v-for="It in Initiatives"
         :key="It.id"
     )
       .cardFigure
+        .cardFigureCaption
+          .flex
+            .Tag.green В работе
+          div
+            .bold {{It.text}}
+            .mt-3 {{It.date}}
         picture
           img(
-            :src="`https://picsum.photos/id/${It.id+120}/380/380`"
+            :src="`https://picsum.photos/id/${It.id+60}/380/380`"
           )
-        .cardFigure__text
-          .bold {{It.text}}
-          .date {{It.address}}
-
-
-
 
 
 
@@ -42,7 +42,7 @@ client-only
 // TODO какого глобально не работает
 // import VClamp from 'vue-clamp'
 
-import { Appeals } from '~/data/DATA.js'
+import { Initiatives } from '~/data/DATA.js'
 
 export default {
   components: {
@@ -50,7 +50,7 @@ export default {
   },
   data() {
     return {
-      Appeals,
+      Initiatives,
       // =============
       swiperOption: {
         navigation: {

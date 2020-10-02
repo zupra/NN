@@ -52,12 +52,4 @@ export default {}
 
   &.shawshank
     background $clr_shawshank
-
-.Tag
-  margin .2em
-  background $clr_alien
-  color #FFF
-  border-radius: 1em
-  line-height: 1
-  padding .2em .7em
 </style>

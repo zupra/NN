@@ -21,3 +21,34 @@ btn()
     // filter: drop-shadow(0 4px 10px #444);
     box-shadow: 0 .2rem .7rem -.3rem  #222 //#5085f1 // $clr_alien
     // transform: translateY(-4px);
+
+
+.Tag
+  margin .2em
+  border-radius: 1rem
+  font-size 13px
+  
+  padding 0 .8rem
+  height 1.5rem
+  display: grid;
+  align-items: center;
+
+  color #FFF
+  background $clr_alien
+  &.green
+    background $clr_drive
+
+
+
+
+
+
+.TAB
+  user-select none
+  margin-right 1.6rem
+  &.active
+    &:before
+      width: 100%;
+  sup
+    margin-left .3em
+    color $clr_rocky

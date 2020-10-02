@@ -4,16 +4,20 @@ client-only
   swiper(
     :options="swiperOption"
   )
-    swiper-slide.newsItem(
-      v-for="It in newsList"
+    swiper-slide(
+      v-for="It in News"
       :key="It.id"
     )
-      img.newsItemImg(
-        :src="It.img"
+    
+      N-link.newsItem(
+        to="/news/news_item"
       )
-      .newsItemText
-        .newsItemText__text {{It.title}}
-        .newsItemText__date {{It.date}}
+        img.newsItemImg(
+        :src="`https://picsum.photos/id/${It.id+10}/380/240`"
+        )
+        .newsItemText
+          .newsItemText__text {{It.text}}
+          .newsItemText__date {{It.date}}
 
 
 
@@ -39,69 +43,21 @@ client-only
 // TODO какого глобально не работает
 // import VClamp from 'vue-clamp'
 
-const DATA = [
-  {
-    id: 1,
-    title:
-      'В городах присутствия Росатома началась тестовая эксплуатация систем «умного города»',
-    date: '09 июля 2020',
-    link: 'https://rusatom-utilities.ru/news/631/',
-    img: 'https://picsum.photos/id/11/380/212',
-  },
-  {
-    id: 2,
-    title:
-      'Разработанные на хакатоне решения найдут применение в «Умном городе»',
-    date: '02 июня 2020',
-    link: 'https://rusatom-utilities.ru/news/619/',
-    img: 'https://picsum.photos/id/12/380/212',
-  },
-  {
-    id: 3,
-    title:
-      'Росатом организует хакатон для создания цифровых сервисов в атомных городах',
-    date: '19 мая 2020',
-    link: 'https://rusatom-utilities.ru/news/618/',
-    img: 'https://picsum.photos/id/13/380/212',
-  },
-  {
-    id: 4,
-    title:
-      '«Русатом Инфраструктурные решения» займется цифровой трансформацией Южно-Сахалинска',
-    date: '18 мая 2020',
-    link: 'https://rusatom-utilities.ru/news/617/',
-    img: 'https://picsum.photos/id/14/380/212',
-  },
-  {
-    id: 5,
-    title: 'Росатом передает «Умный город» 10 атомградам',
-    date: '07 апреля 2020',
-    link: 'https://rusatom-utilities.ru/news/614/',
-    img: 'https://picsum.photos/id/15/380/212',
-  },
-  {
-    id: 6,
-    title: 'Цифровые сервисы Росатома помогут развитию Томской области',
-    date: '24 марта 2020',
-    link: 'https://rusatom-utilities.ru/news/609/',
-    img: 'https://picsum.photos/id/16/380/212',
-  },
-  {
-    id: 7,
-    title: 'Росатом развернет систему «Умный город» в Усолье-Сибирском',
-    date: '31 августа 2020',
-    link: 'https://rusatom-utilities.ru/news/650/',
-    img: 'https://picsum.photos/id/17/380/212',
-  },
-]
-
 export default {
   components: {
     // VClamp,
   },
   data() {
     return {
-      newsList: DATA,
+      News: Array.from({ length: 8 }, (_, idx) => ({
+        id: idx + 1,
+        text: this.$faker.lorem.paragraph(),
+        date: new Date(this.$faker.date.past()).toLocaleString('ru-RU', {
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        }),
+      })),
       // =============
       swiperOption: {
         navigation: {

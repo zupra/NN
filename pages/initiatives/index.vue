@@ -30,14 +30,17 @@
       :key="It.id"
       to="/initiatives/initiatives_item"
     )
+
+      .cardFigureCaption
+        .flex
+          .Tag.green В работе
+        div
+          .bold {{It.text}}
+          .mt-3 {{It.date}}
       picture
         img(
-          :src="`https://picsum.photos/id/${It.id+60}/380/380`"
+           :src="`https://picsum.photos/id/${It.id+60}/380/380`"
         )
-      .cardFigure__text
-        .bold {{It.text}}
-        .date {{It.date}}
-
 
   .btn.my-5(
     @click="loadMore()"

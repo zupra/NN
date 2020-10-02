@@ -9,6 +9,8 @@
 @import '_common';
 @import '_nav&links';
 @import '_el';
+@import '_cardItem';
+
 @import '_@Utilities';
 
 // :root
@@ -37,7 +39,19 @@ h3
 a
   color inherit
 
+.Text
+  line-height 1.5
 
+.liteText
+  color rgba($clr_titanic, .42)
+  // color rgba(currentColor, .42)
+
+
+
+
+/**
+Page transition
+*/
 .page-enter-active,
 .page-leave-active
     transition-property opacity

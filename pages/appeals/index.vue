@@ -31,13 +31,16 @@
       :key="It.id"
       to="/appeals/appeals_item"
     )
+      .cardFigureCaption
+        .flex
+          .Tag.green В работе
+        div
+          .bold {{It.text}}
+          .mt-3 {{It.address}}
       picture
         img(
-          :src="`https://picsum.photos/id/${It.id+120}/380/380`"
+           :src="`https://picsum.photos/id/${It.id+120}/380/380`"
         )
-      .cardFigure__text
-        .bold {{It.text}}
-        div {{It.address}}
 
 
   .btn.my-5(

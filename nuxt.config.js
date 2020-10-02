@@ -14,7 +14,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-head
    */
   head: {
-    title: 'NN', // process.env.npm_package_name || '',
+    title: 'платформа Лобачевский | Нижний Новгород', // process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -36,14 +36,23 @@ export default {
    */
   plugins: [
     { src: '@/plugins/vue-awesome-swiper.js', mode: 'client' },
-    // '@/plugins/vue-scrollto.js',
     '@/plugins/faker.js',
   ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
+      // https://github.com/Krutie/nuxt-components-demo/blob/master/nuxt.config.js
+      // https://ru.nuxtjs.org/blog/improve-your-developer-experience-with-nuxt-components/#lazy-loading-your-components
    */
-  components: true,
+  // components: true,
+  components: [
+    '~/components', // shortcut to { path: '~/components' }
+    {
+      path: '~/components/slider/',
+      prefix: 'Slider',
+    },
+  ],
+
   /*
    ** Nuxt.js dev-modules
    */

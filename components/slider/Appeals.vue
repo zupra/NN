@@ -5,17 +5,20 @@ client-only
     :options="swiperOption"
   )
     swiper-slide(
-        v-for="It in Initiatives"
+        v-for="It in Appeals"
         :key="It.id"
     )
       .cardFigure
+        .cardFigureCaption
+          .flex
+            .Tag.green В работе
+          div
+            .bold {{It.text}}
+            .mt-3 {{It.address}}
         picture
           img(
-            :src="`https://picsum.photos/id/${It.id+60}/380/380`"
+            :src="`https://picsum.photos/id/${It.id+120}/380/380`"
           )
-        .cardFigure__text
-          .bold {{It.text}}
-          .date {{It.date}}
 
 
     .swiper-button-prev(
@@ -38,7 +41,7 @@ client-only
 // TODO какого глобально не работает
 // import VClamp from 'vue-clamp'
 
-import { Initiatives } from '~/data/DATA.js'
+import { Appeals } from '~/data/DATA.js'
 
 export default {
   components: {
@@ -46,7 +49,7 @@ export default {
   },
   data() {
     return {
-      Initiatives,
+      Appeals,
       // =============
       swiperOption: {
         navigation: {
