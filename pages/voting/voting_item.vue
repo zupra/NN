@@ -1,6 +1,14 @@
 <template lang="pug">
 .Page.wrap
 
+  .breadcrumbs
+    N-link.breadcrumbs_item(
+      to="/"
+    ) Главная / 
+    N-link.breadcrumbs_item(
+      to="/Голосования"
+    ) voting
+
   .flex
     .flex_1
       h2.mb-4 Голосования

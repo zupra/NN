@@ -1,6 +1,11 @@
 <template lang="pug">
 .Page.wrap
 
+  .breadcrumbs
+    N-link.breadcrumbs_item(
+      to="/"
+    ) Главная / 
+
   .flex
     .flex_1
       h2.mb-4 Обращения

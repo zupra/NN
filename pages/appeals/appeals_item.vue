@@ -1,6 +1,14 @@
 <template lang="pug">
 .wrap
 
+  .breadcrumbs
+    N-link.breadcrumbs_item(
+      to="/"
+    ) Главная / 
+    N-link.breadcrumbs_item(
+      to="/appeals"
+    ) Обращения
+
   //- TODO
   h2(
     style="margin-right: 360px;"

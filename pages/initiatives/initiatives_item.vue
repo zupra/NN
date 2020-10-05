@@ -1,5 +1,14 @@
 <template lang="pug">
-.wrap.Page
+.Page.wrap
+
+  .breadcrumbs
+    N-link.breadcrumbs_item(
+      to="/"
+    ) Главная / 
+    N-link.breadcrumbs_item(
+      to="/initiatives"
+    ) Инициативы
+
   h1 TODO
 
 </template>
