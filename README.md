@@ -1,11 +1,20 @@
-### Node Express template project
+# NN
 
-This project is based on a GitLab [Project Template](https://docs.gitlab.com/ee/gitlab-basics/create-project.html).
+## Build Setup
 
-Improvements can be proposed in the [original project](https://gitlab.com/gitlab-org/project-templates/express).
+```bash
+# install and start localhost:3000
+$ yarn && yarn dev
 
-### CI/CD with Auto DevOps
+# serve with hot reload at localhost:3000
+$ yarn dev
 
-This template is compatible with [Auto DevOps](https://docs.gitlab.com/ee/topics/autodevops/).
+# build for production and launch server
+$ yarn build
+$ yarn start
 
-If Auto DevOps is not already enabled for this project, you can [turn it on](https://docs.gitlab.com/ee/topics/autodevops/#enabling-auto-devops) in the project settings.
+# generate static project
+$ yarn generate
+```
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

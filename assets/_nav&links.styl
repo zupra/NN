@@ -1,0 +1,63 @@
+hoverBlueLine()
+  position relative
+  &:before
+    // display: block;
+    position absolute
+    bottom: -4px;
+    
+    content: "";
+    // margin: 0 auto;
+    transition: width .35s
+    width: 0;
+
+    // border-bottom: 4px solid $clr_rocky;
+    border-radius 4px
+    background $clr_rocky;
+    height 4px
+  &:hover:before
+    width: 100%;
+
+.scrollTo, .H2Page, .TAB
+  cursor: pointer;
+  text-decoration none
+  hoverBlueLine()
+
+
+
+
+// TopNav
+.TopNav
+  filter: drop-shadow(0 2px 2px #999);
+  // &_Logo
+  //   filter: drop-shadow(0 2px 2px #CCC);
+.scrollTo
+  
+  // cursor: pointer;
+  // line-height 1.6
+  // hoverBlueLine()
+  &.nuxt-link-exact-active
+    &:before
+      width: 100%;
+      background $clr_titanic
+
+
+.H2Page
+  margin-bottom 1.6rem
+  display inline-block
+  // outline: #EEE dotted;
+  //h2
+  font-size: 40px;
+  font-weight bold
+  // filter: drop-shadow(2px 2px 2px #CCC);
+  filter: drop-shadow(1px 3px 2px #CCC);
+  position relative
+  &:after
+    position absolute
+    bottom 4px
+
+    // display inline-block
+    // vertical-align: middle;
+    content ''
+    width .8em
+    height .8em
+    background url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='CORNFLOWERBLUE' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' ><polyline points='9 18 15 12 9 6'></polyline></svg>") center/cover no-repeat
