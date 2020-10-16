@@ -12,6 +12,6 @@ before_script:
 deploy_production:
   stage: develop
   script:
-    - ssh -o StrictHostKeyChecking=no deployer@ag.nn.rusatom.dev 'cd /var/www/ag-front.nn.rusatom.dev && git pull && npm i && npm run build'
+    - ssh -o StrictHostKeyChecking=no deployer@ag.nn.rusatom.dev 'cd /var/www/ag-front.nn.rusatom.dev && git pull && yarn && yarn generate'
   only:
     - develop
