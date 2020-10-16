@@ -1,0 +1,17 @@
+variables:
+  GIT_STRATEGY: clone
+
+stages:
+  - develop
+
+before_script:
+  - mkdir ~/.ssh && chmod 700 ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+  - eval $(ssh-agent -s) && ssh-add ~/.ssh/id_rsa
+
+deploy_production:
+  stage: develop
+  script:
+    - ssh -o StrictHostKeyChecking=no deployer@ag.nn.rusatom.dev 'cd /var/www/ag-front.nn.rusatom.dev && git pull && npm i && npm run build'
+  only:
+    - develop
