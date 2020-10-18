@@ -6,6 +6,11 @@
       to="/"
     ) Главная / 
 
+
+  PreData
+    pre {{DATA}}
+
+
   .flex
     .flex_1
       h2.mb-4 Инициативы
@@ -28,24 +33,25 @@
       v-for="el in tagList"
     ) {{el}}
 
+
   transition-group.gridCards(
     name="list"
   )
     N-link.cardFigure(
-      v-for="It in Initiatives"
+      v-for="(It,idx) in DATA"
       :key="It.id"
-      to="/initiatives/initiatives_item"
+      :to="`/initiatives/${It.id}`"
     )
 
       .cardFigureCaption
         .flex
           .Tag.green В работе
         div
-          .bold {{It.text}}
-          .mt-3 {{It.date}}
+          .bold {{It.title}}
+          .mt-3 {{new Date(It.updated_at).toLocaleDateString('ru-RU', {day: '2-digit',month: 'long',year: 'numeric'})}}
       picture
         img(
-           :src="`https://picsum.photos/id/${It.id+60}/380/380`"
+           :src="`https://picsum.photos/id/${idx+60}/380/380`"
         )
 
   .btn_more.my-5(
@@ -67,6 +73,10 @@ const tagList = [
 ]
 
 export default {
+  async asyncData({ app }) {
+    const { data } = await app.$axios.$get('initiatives')
+    return { DATA: data }
+  },
   data() {
     return {
       tagList,

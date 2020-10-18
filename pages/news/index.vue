@@ -42,14 +42,14 @@
     N-link.newsItem(
       v-for="(It,idx) in DATA"
       :key="It.id"
-      to="/news/news_item"
+      :to="`/news/${It.id}`"
     )
       img.newsItemImg(
         :src="`https://picsum.photos/id/${idx+10}/380/240`"
       )
       .newsItemText
         .newsItemText__text {{It.title}}
-        .newsItemText__date {{It.updated_at}}
+        .newsItemText__date {{new Date(It.updated_at).toLocaleDateString('ru-RU', {day: '2-digit',month: 'long',year: 'numeric'})}}
 
 
   .btn_more.my-5(

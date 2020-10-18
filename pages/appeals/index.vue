@@ -6,6 +6,11 @@
       to="/"
     ) Главная / 
 
+
+  PreData
+    pre {{DATA}}
+
+
   .flex
     .flex_1
       h2.mb-4 Обращения
@@ -32,15 +37,15 @@
     name="list"
   )
     N-link.cardFigure(
-      v-for="It in Appeals"
+      v-for="It in DATA"
       :key="It.id"
-      to="/appeals/appeals_item"
+      :to="`/appeals/${It.id}`"
     )
       .cardFigureCaption
         .flex
           .Tag.green В работе
         div
-          .bold {{It.text}}
+          .bold {{It.title}}
           .mt-3 {{It.address}}
       picture
         img(
@@ -71,6 +76,11 @@ const tagList = [
   'Решенные',
 ]
 export default {
+  async asyncData({ app }) {
+    const { data } = await app.$axios.$get('initiatives')
+    return { DATA: data }
+  },
+
   data() {
     return {
       tagList,

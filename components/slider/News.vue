@@ -8,16 +8,15 @@ client-only
       v-for="(It,idx) in News"
       :key="It.id"
     )
-    
       N-link.newsItem(
-        to="/news/news_item"
+        :to="`/news/${It.id}`"
       )
         img.newsItemImg(
-        :src="`https://picsum.photos/id/${idx+10}/380/240`"
+        :src="`https://picsum.photos/id/${idx+20}/380/240`"
         )
         .newsItemText
           .newsItemText__text {{It.title}}
-          .newsItemText__date {{It.updated_at}}
+          .newsItemText__date {{new Date(It.updated_at).toLocaleDateString('ru-RU', {day: '2-digit',month: 'long',year: 'numeric'})}}
 
 
 

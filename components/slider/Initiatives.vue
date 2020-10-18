@@ -5,16 +5,18 @@ client-only
     :options="swiperOption"
   )
     swiper-slide(
-        v-for="(It,idx) in Initiatives"
-        :key="It.id"
+      v-for="(It,idx) in Initiatives"
+      :key="It.id"
     )
-      .cardFigure
+      N-link.cardFigure(
+        :to="`/initiatives/${It.id}`"
+      )
         .cardFigureCaption
           .flex
             .Tag.green В работе
           div
-            .bold {{It.text}}
-            .mt-3 {{It.updated_at}}
+            .bold {{It.title}}
+            .mt-3 {{new Date(It.updated_at).toLocaleDateString('ru-RU', {day: '2-digit',month: 'long',year: 'numeric'})}}
         picture
           img(
             :src="`https://picsum.photos/id/${idx+60}/380/380`"

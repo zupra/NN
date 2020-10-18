@@ -8,7 +8,9 @@ client-only
         v-for="(It,idx) in Appeals"
         :key="It.id"
     )
-      .cardFigure
+      N-link.cardFigure(
+        :to="`/appeals/appeals_item`"
+      )
         .cardFigureCaption
           .flex
             .Tag.green В работе
