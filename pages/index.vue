@@ -1,10 +1,9 @@
 <template lang="pug">
 .Page
-
-
-  //- pre {{Appeals}}
-
   .wrap
+    //- pre {{Appeals}}
+    PreData
+      pre {{$data}}
     // Вместе сделаем город лучше ...
     Intro
 
@@ -145,6 +144,26 @@
 import { Appeals } from '~/data/DATA.js'
 export default {
   layout: 'first',
+  async asyncData({ app }) {
+    const [
+      newsRes,
+      initiativesRes,
+      complaintsRes,
+      votingsRes,
+    ] = await Promise.all([
+      app.$axios.$get('news'),
+      app.$axios.$get('initiatives'),
+      app.$axios.$get('complaints'),
+      app.$axios.$get('votings'),
+    ])
+    return {
+      News: newsRes.data,
+      Initiatives: initiativesRes.data,
+      Complaints: complaintsRes.data,
+      Votings: votingsRes.data,
+    }
+  },
+
   data() {
     return {
       Appeals,

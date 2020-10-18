@@ -48,7 +48,7 @@
         )
 
 
-  .btn.my-5(
+  .btn_more.my-5(
     @click="loadMore()"
   ) Показать еще обращения
 

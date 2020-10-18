@@ -8,27 +8,51 @@
 
   h2.mb-4 Новости
 
+  
+  PreData
+    pre {{DATA}}
+
   .flex_wr.mb-3
     .Tag(
       v-for="el in tagList"
     ) {{el}}
 
+
+  //-
+    transition-group.gridCards(
+      name="list"
+    )
+      N-link.newsItem(
+        v-for="It in News"
+        :key="It.id"
+        to="/news/news_item"
+      )
+        img.newsItemImg(
+          :src="`https://picsum.photos/id/${It.id+10}/380/240`"
+        )
+        .newsItemText
+          .newsItemText__text {{It.text}}
+          .newsItemText__date {{It.date}}
+
+
+
   transition-group.gridCards(
     name="list"
   )
     N-link.newsItem(
-      v-for="It in News"
+      v-for="(It,idx) in DATA"
       :key="It.id"
       to="/news/news_item"
     )
       img.newsItemImg(
-        :src="`https://picsum.photos/id/${It.id+10}/380/240`"
+        :src="`https://picsum.photos/id/${idx+10}/380/240`"
       )
       .newsItemText
-        .newsItemText__text {{It.text}}
-        .newsItemText__date {{It.date}}
+        .newsItemText__text {{It.title}}
+        .newsItemText__date {{It.updated_at}}
 
-  .btn.my-5(
+
+  .btn_more.my-5(
     @click="loadMore()"
   ) Показать еще новости
 
@@ -56,6 +80,11 @@ const tagList = [
 ]
 
 export default {
+  async asyncData({ app }) {
+    const { data } = await app.$axios.$get('news')
+    return { DATA: data }
+  },
+
   data() {
     return {
       tagList,
@@ -77,15 +106,19 @@ export default {
   },
   methods: {
     loadMore() {
-      this.News.push(
+      this.DATA.push(
         ...Array.from({ length: 3 }, (_, idx) => ({
-          id: idx + this.lastId,
-          text: this.$faker.lorem.paragraph(),
-          date: new Date(this.$faker.date.past()).toLocaleString('ru-RU', {
-            day: '2-digit',
-            month: 'long',
-            year: 'numeric',
-          }),
+          // id: idx + this.lastId,
+          id: `idx_${idx}`,
+          title: this.$faker.lorem.paragraph(),
+          updated_at: new Date(this.$faker.date.past()).toLocaleString(
+            'ru-RU',
+            {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric',
+            }
+          ),
         }))
       )
     },

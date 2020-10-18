@@ -48,7 +48,7 @@
            :src="`https://picsum.photos/id/${It.id+60}/380/380`"
         )
 
-  .btn.my-5(
+  .btn_more.my-5(
     @click="loadMore()"
   ) Показать еще инициативы
 
