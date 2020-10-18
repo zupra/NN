@@ -1,8 +1,19 @@
 <template lang="pug">
-.PreData.mb-3
-  button.btn_open(@click='open = !open') {{ open ? 'скрыть API' : 'показать API'}}
+.PreData.mb-3(
+  v-show="show"
+)
+  .flex.y_center
+    .PreData_hide.mx-3(
+      @click="show = false"
+    )
+      img(
+        src="https://icongr.am/clarity/eye-hide.svg?size=32&color=505fd3"
+      )
+    button.btn_open(
+      @click="open = !open"
+    ) {{ open ? 'скрыть API' : 'показать API'}}
   .preBlock(
-    v-if="open"
+    v-show="open"
   )
     slot
 
@@ -13,31 +24,44 @@ export default {
   data() {
     return {
       open: false,
+      show: true,
     }
   },
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 
 
 
 
 .PreData
   background-color: #f4f6f8;
-  padding: .5rem 0  0 .5rem ;
-
-
+  // padding: .5rem 0  0 .5rem ;
+  // position relative
+  &_hide
+    cursor pointer
+    /*
+    position absolute
+    right 0
+    top: -16px;
+    height 40px
+    width 40px
+    border-radius 4px
+    background #f4f6f8
+    &:hover
+      background-color: #EEE;
+    */
 
 .btn_open
   btn()
   display: inline-block;
-  margin-bottom .5rem
+  margin .5rem 0
   border: solid 1px transparent;
   border-radius: 4px;
   padding: 0.3em .7em;
   color: #FFFFFF;
-  background-color: #9555AF;
+  background-color: rgba(#9555AF, .5);
   &:hover
     color: #9050AA;
     border-color: currentColor;

@@ -5,7 +5,7 @@ client-only
     :options="swiperOption"
   )
     swiper-slide(
-        v-for="It in Initiatives"
+        v-for="(It,idx) in Initiatives"
         :key="It.id"
     )
       .cardFigure
@@ -14,10 +14,10 @@ client-only
             .Tag.green В работе
           div
             .bold {{It.text}}
-            .mt-3 {{It.date}}
+            .mt-3 {{It.updated_at}}
         picture
           img(
-            :src="`https://picsum.photos/id/${It.id+60}/380/380`"
+            :src="`https://picsum.photos/id/${idx+60}/380/380`"
           )
 
 
@@ -42,15 +42,20 @@ client-only
 // TODO какого глобально не работает
 // import VClamp from 'vue-clamp'
 
-import { Initiatives } from '~/data/DATA.js'
+// import { Initiatives } from '~/data/DATA.js'
 
 export default {
   components: {
     // VClamp,
   },
+
+  async fetch() {
+    const { data } = await this.$axios.$get('initiatives')
+    this.Initiatives = data
+  },
   data() {
     return {
-      Initiatives,
+      Initiatives: [],
       // =============
       swiperOption: {
         navigation: {

@@ -5,7 +5,7 @@ client-only
     :options="swiperOption"
   )
     swiper-slide(
-      v-for="It in News"
+      v-for="(It,idx) in News"
       :key="It.id"
     )
     
@@ -13,11 +13,11 @@ client-only
         to="/news/news_item"
       )
         img.newsItemImg(
-        :src="`https://picsum.photos/id/${It.id+10}/380/240`"
+        :src="`https://picsum.photos/id/${idx+10}/380/240`"
         )
         .newsItemText
-          .newsItemText__text {{It.text}}
-          .newsItemText__date {{It.date}}
+          .newsItemText__text {{It.title}}
+          .newsItemText__date {{It.updated_at}}
 
 
 
@@ -47,9 +47,15 @@ export default {
   components: {
     // VClamp,
   },
+  async fetch() {
+    const { data } = await this.$axios.$get('news')
+    this.News = data
+  },
   data() {
     return {
-      News: Array.from({ length: 8 }, (_, idx) => ({
+      News: [],
+      /*
+      Array.from({ length: 8 }, (_, idx) => ({
         id: idx + 1,
         text: this.$faker.lorem.paragraph(),
         date: new Date(this.$faker.date.past()).toLocaleString('ru-RU', {
@@ -58,6 +64,7 @@ export default {
           year: 'numeric',
         }),
       })),
+      */
       // =============
       swiperOption: {
         navigation: {
