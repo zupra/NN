@@ -6,9 +6,9 @@
       to="/"
     ) Главная / 
 
-
+  //-
   PreData
-    pre {{DATA}}
+    pre Initiatives:{{Initiatives}}
 
 
   .flex
@@ -28,31 +28,63 @@
       )
 
 
-  .flex_wr.my-3
-    .Tag(
-      v-for="el in tagList"
-    ) {{el}}
+  .flex_wr.my-4
+    .Tag.clicked(
+      :class="{active: !activeCategory}"
+      @click="filterByCategory(null); activeCategory = null"
+    ) Все категории
+    .Tag.clicked(
+      v-for="(It,idx) in Categories"
+      :class="{active: It.id === activeCategory}"
+      :key="It.id"
+      @click="filterByCategory(It.id); activeCategory = It.id"
+    ) {{It.name}}
 
 
   transition-group.gridCards(
     name="list"
   )
     N-link.cardFigure(
-      v-for="(It,idx) in DATA"
+      v-for="(It,idx) in Initiatives"
       :key="It.id"
       :to="`/initiatives/${It.id}`"
     )
 
       .cardFigureCaption
-        .flex
-          .Tag.green В работе
+        .flex_wr
+          .Tag.green {{ Object.values(It.category).toString()}}
         div
           .bold {{It.title}}
-          .mt-3 {{new Date(It.updated_at).toLocaleDateString('ru-RU', {day: '2-digit',month: 'long',year: 'numeric'})}}
-      picture
-        img(
-           :src="`https://picsum.photos/id/${idx+60}/380/380`"
+          .opacityText.mt-3 {{new Date(It.updated_at).toLocaleDateString('ru-RU', {day: '2-digit',month: 'long',year: 'numeric'})}}
+          .flex.mt-2
+            //- likes
+            .flex(
+              style="color:#95C763"
+            )
+              img(
+                src="https://icongr.am/material/thumb-up-outline.svg?size=18&color=95C763"
+              )
+              .mx-2 {{It.likes}}
+
+            //- dislikes
+            .flex(
+              style="color:#EE587E"
+            )
+              img(
+                src="https://icongr.am/material/thumb-down-outline.svg?size=18&color=EE587E"
+              )
+              .mx-2 {{It.dislikes}}
+
+      picture.cardFigurePicture
+        //- :src="It.image"
+        img.cardFigurePicture__img(
+          :src="`https://picsum.photos/id/${idx+60}/380/380`"
         )
+        
+  .flex(
+    v-if="!Initiatives.length"
+  )
+    h1.my-5.liteText.m_auto Пусто по фильтру
 
   .btn_more.my-5(
     @click="loadMore()"
@@ -61,55 +93,31 @@
 </template>
 
 <script>
-// import { Initiatives } from '~/data/DATA.js'
-
-const tagList = [
-  'Все категории',
-  'Дороги',
-  'Общественные территории',
-  'Общее',
-  'Ремонтные работы',
-  'Водоёмы',
-]
-
 export default {
   async asyncData({ app }) {
-    const { data } = await app.$axios.$get('initiatives')
-    return { DATA: data }
+    const [newsRes, categoriesRes] = await Promise.all([
+      app.$axios.$get('initiatives'),
+      app.$axios.$get('initiatives/categories'),
+    ])
+    return {
+      Initiatives: newsRes.data,
+      Categories: categoriesRes.data,
+    }
   },
   data() {
     return {
-      tagList,
-      Initiatives: Array.from({ length: 6 }, (_, idx) => ({
-        id: idx + 1,
-        text: this.$faker.lorem.sentence(),
-        date: new Date(this.$faker.date.past()).toLocaleString('ru-RU', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric',
-        }),
-      })),
+      activeCategory: null,
     }
   },
-  computed: {
-    lastId() {
-      return this.Initiatives[this.Initiatives.length - 1].id + 1
-    },
-  },
+  computed: {},
   methods: {
-    loadMore() {
-      this.Initiatives.push(
-        ...Array.from({ length: 3 }, (_, idx) => ({
-          id: idx + this.lastId,
-          text: this.$faker.lorem.sentence(),
-          date: new Date(this.$faker.date.past()).toLocaleString('ru-RU', {
-            day: '2-digit',
-            month: 'long',
-            year: 'numeric',
-          }),
-        }))
-      )
+    async filterByCategory(ID) {
+      const { data } = await this.$axios.$get('initiatives', {
+        params: { category_id: ID },
+      })
+      this.Initiatives = data
     },
+    loadMore() {},
   },
 }
 </script>

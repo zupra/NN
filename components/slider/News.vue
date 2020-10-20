@@ -11,9 +11,12 @@ client-only
       N-link.newsItem(
         :to="`/news/${It.id}`"
       )
-        img.newsItemImg(
-        :src="`https://picsum.photos/id/${idx+20}/380/240`"
-        )
+        picture.newsItemPicture
+          //- :src="`https://picsum.photos/id/${idx+10}/380/240`"
+          img.newsItemPicture__img(
+            v-if="It.image"
+            :src="It.image"
+          )
         .newsItemText
           .newsItemText__text {{It.title}}
           .newsItemText__date {{new Date(It.updated_at).toLocaleDateString('ru-RU', {day: '2-digit',month: 'long',year: 'numeric'})}}
@@ -110,56 +113,4 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-
-/*
-.It
-  transition transform 0.3s
-  &:hover
-    transform scale(1.06)
-    // shadow()
-*/
-
-// .It
-//   &:hover
-//     // filter: none
-//     filter: drop-shadow(0 0 16px blue);
-
-
-
-/*
-.swiper
-  &-container
-    padding-bottom: 5em;
-
-  &-button-next, &-button-prev
-    outline 0
-    top 90% //1em;
-    // bottom 0
-    //height 4em //180px
-    width 50px // 100px
-    cursor none
-    &:hover
-      &:after
-        box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 5px 8px rgba(0,0,0,.14), 0 1px 14px rgba(0,0,0,.12);
-    &:after
-      cursor pointer
-      content: '';
-      circle(50px);
-      background #FFF
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18), 0px 1px 2px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04);
-
-  &-button-prev
-    // left 2em
-    background: linear-gradient(90deg, rgba(#FFF, 0.5) 0%, rgba(#FFF, 0.0001) 99%);
-    &:after
-      background: red // #FFF url('~static/icon/L.png') no-repeat center;
-  &-button-next
-    // right: 2em
-    background: linear-gradient(90deg, rgba(#FFF, 0.0001) 0%, rgba(#FFF, 0.5) 99%);
-    &:after
-      background: red // #FFF url('~static/icon/R.png') no-repeat center;
-
-
-*/
-</style>
+<style lang="stylus" scoped></style>

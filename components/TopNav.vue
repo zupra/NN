@@ -38,8 +38,8 @@ const NAV = {
   news: 'Новости',
   interactive_map: 'Интерактивная карта',
   initiatives: 'Инициативы',
-  voting: 'Голосования',
-  appeals: 'Обращения',
+  votings: 'Голосования',
+  complaints: 'Обращения',
 }
 
 export default {

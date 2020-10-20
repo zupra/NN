@@ -5,20 +5,21 @@ client-only
     :options="swiperOption"
   )
     swiper-slide(
-        v-for="(It,idx) in Appeals"
+        v-for="(It,idx) in Complaints"
         :key="It.id"
     )
       N-link.cardFigure(
-        :to="`/appeals/appeals_item`"
+        :to="`/complaints/${It.id}`"
       )
         .cardFigureCaption
           .flex
-            .Tag.green В работе
+            .Tag.green {{It.status}}
           div
-            .bold {{It.text}}
-            .mt-3 {{It.address}}
-        picture
-          img(
+            .bold {{It.description}}
+            .opacityText.mt-3 {{It.address}}
+        picture.cardFigurePicture
+          //- //- :src="It.image"
+          img.cardFigurePicture__img(
             :src="`https://picsum.photos/id/${idx+120}/380/380`"
           )
 
@@ -43,19 +44,17 @@ client-only
 // TODO какого глобально не работает
 // import VClamp from 'vue-clamp'
 
-// import { Appeals } from '~/data/DATA.js'
-
 export default {
   components: {
     // VClamp,
   },
   async fetch() {
     const { data } = await this.$axios.$get('complaints')
-    this.Appeals = data
+    this.Complaints = data
   },
   data() {
     return {
-      Appeals: [],
+      Complaints: [],
       // =============
       swiperOption: {
         navigation: {

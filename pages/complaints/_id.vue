@@ -6,8 +6,13 @@
       to="/"
     ) Главная / 
     N-link.breadcrumbs_item(
-      to="/appeals"
+      to="/complaints"
     ) Обращения
+
+
+  PreData
+    pre {{$data}}
+
 
   //- TODO
   h2(
@@ -78,7 +83,17 @@
 import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 
 export default {
+  validate({ params }) {
+    // Must be a number
+    return /^\d+$/.test(params.id)
+  },
   components: { yandexMap, ymapMarker },
+
+  async asyncData({ app, params }) {
+    const { data } = await app.$axios.$get(`complaints/${params.id}`)
+    return { It: data }
+  },
+
   data() {
     return {
       coords: [56.323851, 44.027802],

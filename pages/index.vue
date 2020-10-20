@@ -1,9 +1,8 @@
 <template lang="pug">
 .Page
   .wrap
-    //- pre {{Appeals}}
-    PreData
-      pre {{$data}}
+
+
     // Вместе сделаем город лучше ...
     Intro
 
@@ -60,10 +59,10 @@
 
 
     // Обращения
-    .Section_scrollTo#appeals.flex
+    .Section_scrollTo#complaints.flex
       .flex_1
         N-link.H2Page(
-          to="appeals"
+          to="complaints"
         ) Обращения
           
         p Вместе мы сможем сделать наш город лучше! Следите за ходом и результатами работ по обращениям, которые подают жители города и области
@@ -79,7 +78,7 @@
           str_1="Обращений"
           str_2="исполнено"
         )
-    SliderAppeals.mt-4
+    SliderComplaints.mt-4
 
 
     // Инициативы
@@ -111,7 +110,7 @@
     SliderInitiatives.mt-4
 
     // Голосования
-    .Section_scrollTo#voting.flex
+    .Section_scrollTo#votings.flex
       .flex_1
         N-link.H2Page(
           to="voting"
@@ -122,6 +121,7 @@
           | и относящиеся к компетенции Правительства и органов исполнительной 
           br
           | власти города или области 
+      
       .flex_1.flex.x_end
         Counters(
           num="6"
@@ -134,40 +134,39 @@
           str_2="на этой неделе"
         )
 
-
-    VotingGrid.mt-4
+    PreData
+      pre {{Votings}}
+    VotingsGrid.mt-4
     .BR
 
 </template>
 
 <script>
-import { Appeals } from '~/data/DATA.js'
 export default {
   layout: 'first',
+
   async asyncData({ app }) {
     const [
-      newsRes,
-      initiativesRes,
-      complaintsRes,
+      // newsRes,
+      // initiativesRes,
+      // complaintsRes,
       votingsRes,
     ] = await Promise.all([
-      app.$axios.$get('news'),
-      app.$axios.$get('initiatives'),
-      app.$axios.$get('complaints'),
+      // app.$axios.$get('news'),
+      // app.$axios.$get('initiatives'),
+      // app.$axios.$get('complaints'),
       app.$axios.$get('votings'),
     ])
     return {
-      News: newsRes.data,
-      Initiatives: initiativesRes.data,
-      Complaints: complaintsRes.data,
+      // News: newsRes.data,
+      // Initiatives: initiativesRes.data,
+      // Complaints: complaintsRes.data,
       Votings: votingsRes.data,
     }
   },
 
   data() {
-    return {
-      Appeals,
-    }
+    return {}
   },
 }
 </script>

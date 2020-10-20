@@ -13,7 +13,7 @@ div
     img(src="~/static/images/intro_BG.png")
   .flex.mb-3
     .Feature_button.mr-4(
-      v-for="(val, key) in {initiatives:'Предложить инициативу', voting:'Участвовать в голосованиях', interactive_map:'Искать информацию на карте'}"
+      v-for="(val, key) in {initiatives:'Предложить инициативу', votings:'Участвовать в голосованиях', interactive_map:'Искать информацию на карте'}"
       v-scroll-to="`#${key}`"
     ) {{val}}
 </template>
@@ -40,11 +40,14 @@ div
   // height 138px
   position relative
 
-  transition: filter .4s
-  filter: drop-shadow(2px 4px 10px #222);
+  transition: filter .3s, transform .5s
+  filter: drop-shadow(2px 4px 10px #444);
   &:hover
     // filter: none
-    filter: drop-shadow(0 0 16px blue);
+    // filter: drop-shadow(0 0 16px blue);
+    box-shadow: 0 4px 8px -4px $clr_alien
+    filter: drop-shadow(0 5px 8px #04b);
+    transform: translateY(-4px);
   &:before
     content: ''
     position absolute

@@ -12,13 +12,33 @@ client-only
         :to="`/initiatives/${It.id}`"
       )
         .cardFigureCaption
-          .flex
-            .Tag.green В работе
+          .flex_wr
+            .Tag.green {{ Object.values(It.category).toString()}}
           div
             .bold {{It.title}}
-            .mt-3 {{new Date(It.updated_at).toLocaleDateString('ru-RU', {day: '2-digit',month: 'long',year: 'numeric'})}}
-        picture
-          img(
+            .opacityText.mt-3 {{new Date(It.updated_at).toLocaleDateString('ru-RU', {day: '2-digit',month: 'long',year: 'numeric'})}}
+            .flex.mt-2
+              //- likes
+              .flex(
+                style="color:#95C763"
+              )
+                img(
+                  src="https://icongr.am/material/thumb-up-outline.svg?size=18&color=95C763"
+                )
+                .mx-2 {{It.likes}}
+
+              //- dislikes
+              .flex(
+                style="color:#EE587E"
+              )
+                img(
+                  src="https://icongr.am/material/thumb-down-outline.svg?size=18&color=EE587E"
+                )
+                .mx-2 {{It.dislikes}}
+
+        picture.cardFigurePicture
+          //- :src="It.image"
+          img.cardFigurePicture__img(
             :src="`https://picsum.photos/id/${idx+60}/380/380`"
           )
 

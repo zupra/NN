@@ -1,5 +1,5 @@
 import faker from 'faker/locale/ru'
-// import { Appeals } from '~/data/DATA.js'
+// import { Complaints } from '~/data/DATA.js'
 
 function randomInt(min, max) {
   let rand = min - 0.5 + Math.random() * (max - min + 1)
@@ -9,7 +9,7 @@ function randomInt(min, max) {
 
 const tags = ['Готовится ответ', 'Решено']
 
-const Appeals = Array.from({ length: 12 }, (_, idx) => ({
+const Complaints = Array.from({ length: 12 }, (_, idx) => ({
   id: idx + 1,
   tag: tags[randomInt(0, 1)],
   text: faker.lorem.words(),
@@ -36,4 +36,4 @@ const Initiatives = Array.from({ length: 12 }, (_, idx) => ({
   }),
 }))
 
-export { randomInt, Appeals, News, Initiatives }
+export { randomInt, Complaints, News, Initiatives }

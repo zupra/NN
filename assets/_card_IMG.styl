@@ -1,0 +1,141 @@
+
+.list-enter-active, 
+.list-leave-active
+  transition: all 1s;
+
+.list-enter, 
+.list-leave-to /* .list-leave-active до версии 2.1.8 */ 
+  opacity: 0;
+  transform: translateY(30px);
+
+
+
+
+.gridCards
+  margin-bottom 4rem
+  display: grid;
+  grid-gap: 3rem;
+  grid-template-columns: repeat(3, 1fr);
+
+
+
+
+
+.newsItem
+  text-decoration none //as Link
+  display: grid;
+  grid-template-rows: 240px 1fr;
+  transition: all .3s
+  &_hover
+    &:hover
+      box-shadow: rgba(45,45,45,0.03) 0 2px 2px, rgba(49,49,49,0.03) 0 4px 4px, rgba(42,42,42,0.03) 0 8px 8px, rgba(32,32,32,0.03) 0 16px 16px, rgba(49,49,49,0.03) 0 32px 32px, rgba(35,35,35,0.03) 0 64px 64px;
+      transform: translateY(-4px);
+      .newsItemPicture__img
+        filter: none
+
+  &Picture
+    // box-shadow: 0 1px 8px -2px #CCC //$clr_alien
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.4));
+    // box-shadow rgba(45,45,45,0.03) 0 2px 2px, rgba(49,49,49,0.03) 0 4px 4px, rgba(42,42,42,0.03) 0 8px 8px, rgba(32,32,32,0.03) 0 16px 16px, rgba(49,49,49,0.03) 0 32px 32px, rgba(35,35,35,0.03) 0 64px 64px;
+    transition: all .3s
+    background #000 // $clr_alien
+    overflow hidden //h240
+    border-radius 16px
+    display: flex;
+    // margin -4px
+
+    &__img
+      margin: auto
+      // width 100%
+      height 100%
+      // object-fit: contain;
+      // filter: sepia(70%)
+      filter: grayscale(50%);
+      
+  &Text
+    margin 1rem //16px  12px 12px
+    display: grid;
+    grid-template-rows: 4.6em 1fr;
+    &__text
+      font-weight bold
+      height 4em
+      overflow: hidden
+    &__date
+      opacity: 0.48;
+
+
+
+
+
+
+
+
+mask()
+  &:after
+    content: ''
+    position absolute
+    left 0
+    top 0
+    width 100%
+    height 100%
+    background: linear-gradient(to top, rgba(0, 21, 72, .9) 0%, rgba(0, 25, 72, 0) 50%);
+    border-radius: 16px;
+
+
+.cardFigure
+  display flex
+  text-decoration none
+  transition: all .3s
+
+  &:hover
+    // filter: drop-shadow(0 0 2px $clr_alien);
+    // filter: drop-shadow(0 4px 10px #444);
+    // box-shadow: 0 4px 8px -4px $clr_alien
+    // transform: translateY(-4px);
+
+    img
+      mask-image: none
+  color #FFF
+  padding 1.4rem
+
+  // width 380px
+  height 380px
+  position relative
+  &Picture
+    // background #fff7d8
+    mask()
+    // background $clr_gladiator //$clr_arrival //#96baf8
+    border-radius: 16px;
+    
+    height 380px
+    width 100%
+    position absolute
+    left 0
+    top 0
+    z-index -1
+    background: linear-gradient(360deg, rgba(0, 21, 72, 0.72) 0%, rgba(0, 25, 72, 0) 100%);
+
+    &__img
+      max-height: 100%;
+      max-width: 100%
+      // border-radius: 16px;
+
+      transition: all .5s
+      display: block
+      border-radius: 16px;
+      mask-image: linear-gradient(to bottom, rgba(0, 21, 72, 0.72) 0%, rgba(0, 25, 72, .9) 90%);
+  
+  &Caption
+    display flex
+    flex-direction column
+    height 100%
+    justify-content space-between
+
+    /*
+    &_end
+      // padding 1.4rem
+      display: grid;
+      grid-template-rows: 4.2em 1fr;
+      align-items: end;
+      grid-gap: 1rem
+    */

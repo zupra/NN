@@ -6,6 +6,13 @@
       to="/"
     ) Главная /
 
+
+  //-
+    PreData
+      pre {{Votings}}
+
+
+
   .flex
     .flex_1
       h2.mb-4 Голосования
@@ -23,10 +30,19 @@
       )
 
 
-  .flex_wr.my-3
-    .Tag(
-      v-for="el in tagList"
-    ) {{el}}
+  .flex_wr.mb-4
+    .Tag.clicked(
+      :class="{active: !activeCategory}"
+      @click="filterByCategory(null); activeCategory = null"
+    ) Все категории
+    .Tag.clicked(
+      v-for="(It,idx) in Categories"
+      :class="{active: It.id === activeCategory}"
+      :key="It.id"
+      @click="filterByCategory(It.id); activeCategory = It.id"
+    ) {{It.name}}
+
+
 
 
 
@@ -38,24 +54,39 @@
 
 
 
+  pre {{$data}}
+
 
 </template>
 
 <script>
-const tagList = [
-  'Все категории',
-  'Дороги',
-  'Общественные территории',
-  'Общее',
-  'Ремонтные работы',
-  'Водоёмы',
-]
 export default {
+  async asyncData({ app }) {
+    const [votingsRes, categoriesRes] = await Promise.all([
+      app.$axios.$get('votings'),
+      app.$axios.$get('votings/categories'),
+    ])
+    return {
+      Votings: votingsRes.data,
+      Categories: categoriesRes.data,
+    }
+  },
+
   data() {
     return {
-      tagList,
-      // Initiatives,
+      activeCategory: null,
     }
+  },
+  computed: {},
+  methods: {
+    async filterByCategory(ID) {
+      const { data } = await this.$axios.$get('votings', {
+        params: { category_id: ID },
+      })
+      this.Votings = data
+    },
+
+    loadMore() {},
   },
 }
 </script>
