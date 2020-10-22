@@ -37,8 +37,13 @@
       :to="`/news/${It.id}`"
     )
 
-      picture.newsItemPicture
+      .newsItemPicture
         //- :src="`https://picsum.photos/id/${idx+10}/380/240`"
+        .newsItemPicture__tag.flex_wr(
+          v-if="It.category"
+        )
+          .Tag.green {{ Object.values(It.category).toString()}}
+
         img.newsItemPicture__img(
           v-if="It.image"
           :src="It.image.replace('extra', 'medium')"
@@ -63,8 +68,8 @@
     @click="loadMore()"
   ) Показать еще новости
 
-  pre {{TST_Meta}}
-  pre {{hasLoadMore}}
+  //- pre {{TST_Meta}}
+  //- pre {{hasLoadMore}}
 
 </template>
 
@@ -88,11 +93,11 @@ export default {
     }
   },
   computed: {
+    // TST_Meta() {
+    //   return { ...this.Meta, links: [] }
+    // },
     hasLoadMore() {
       return !(this.Meta.current_page === this.Meta.last_page)
-    },
-    TST_Meta() {
-      return { ...this.Meta, links: [] }
     },
     nextPage() {
       return this.Meta.current_page + 1
@@ -113,7 +118,6 @@ export default {
           category_id: this.activeCategory,
         },
       })
-      // this.News = [...this.News, data]
       this.News.push(...data)
       this.Meta = meta
     },

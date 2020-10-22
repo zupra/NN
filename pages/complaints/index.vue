@@ -67,9 +67,11 @@
     h1.my-5.liteText.m_auto Пусто по фильтру
 
   .btn_more.my-5(
+    v-show="hasLoadMore"
     @click="loadMore()"
   ) Показать еще обращения
-
+  
+  pre {{hasLoadMore}}
 
 
 </template>
@@ -83,6 +85,7 @@ export default {
     ])
     return {
       Complaints: complaintsRes.data,
+      Meta: complaintsRes.meta,
       Categories: categoriesRes.data,
     }
   },
@@ -92,16 +95,32 @@ export default {
       activeCategory: null,
     }
   },
-  computed: {},
+  computed: {
+    hasLoadMore() {
+      return !(this.Meta.current_page === this.Meta.last_page)
+    },
+    nextPage() {
+      return this.Meta.current_page + 1
+    },
+  },
   methods: {
     async filterByCategory(ID) {
-      const { data } = await this.$axios.$get('complaints', {
+      const { data, meta } = await this.$axios.$get('complaints', {
         params: { category_id: ID },
       })
       this.Complaints = data
+      this.Meta = meta
     },
-
-    loadMore() {},
+    async loadMore() {
+      const { data, meta } = await this.$axios.$get('complaints', {
+        params: {
+          page: this.nextPage,
+          category_id: this.activeCategory,
+        },
+      })
+      this.Complaints.push(...data)
+      this.Meta = meta
+    },
   },
 }
 </script>

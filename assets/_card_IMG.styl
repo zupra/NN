@@ -34,6 +34,7 @@
         filter: none
 
   &Picture
+    position relative
     // box-shadow: 0 1px 8px -2px #CCC //$clr_alien
     filter: drop-shadow(0 2px 4px rgba(0,0,0,.4));
     // box-shadow rgba(45,45,45,0.03) 0 2px 2px, rgba(49,49,49,0.03) 0 4px 4px, rgba(42,42,42,0.03) 0 8px 8px, rgba(32,32,32,0.03) 0 16px 16px, rgba(49,49,49,0.03) 0 32px 32px, rgba(35,35,35,0.03) 0 64px 64px;
@@ -43,6 +44,14 @@
     border-radius 16px
     display: flex;
     // margin -4px
+
+
+    &__tag
+      position absolute
+      z-index 1
+      left 1rem
+      top 1rem
+
 
     &__img
 

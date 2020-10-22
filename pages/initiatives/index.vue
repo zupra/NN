@@ -87,6 +87,7 @@
     h1.my-5.liteText.m_auto Пусто по фильтру
 
   .btn_more.my-5(
+    v-show="hasLoadMore"
     @click="loadMore()"
   ) Показать еще инициативы
 
@@ -95,12 +96,13 @@
 <script>
 export default {
   async asyncData({ app }) {
-    const [newsRes, categoriesRes] = await Promise.all([
+    const [initiativesRes, categoriesRes] = await Promise.all([
       app.$axios.$get('initiatives'),
       app.$axios.$get('initiatives/categories'),
     ])
     return {
-      Initiatives: newsRes.data,
+      Initiatives: initiativesRes.data,
+      Meta: initiativesRes.meta,
       Categories: categoriesRes.data,
     }
   },
@@ -109,15 +111,32 @@ export default {
       activeCategory: null,
     }
   },
-  computed: {},
+  computed: {
+    hasLoadMore() {
+      return !(this.Meta.current_page === this.Meta.last_page)
+    },
+    nextPage() {
+      return this.Meta.current_page + 1
+    },
+  },
   methods: {
     async filterByCategory(ID) {
-      const { data } = await this.$axios.$get('initiatives', {
+      const { data, meta } = await this.$axios.$get('initiatives', {
         params: { category_id: ID },
       })
       this.Initiatives = data
+      this.Meta = meta
     },
-    loadMore() {},
+    async loadMore() {
+      const { data, meta } = await this.$axios.$get('initiatives', {
+        params: {
+          page: this.nextPage,
+          category_id: this.activeCategory,
+        },
+      })
+      this.Initiatives.push(...data)
+      this.Meta = meta
+    },
   },
 }
 </script>
